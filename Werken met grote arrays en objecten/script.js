@@ -196,3 +196,113 @@ document.getElementById("landenteller").addEventListener("click", () => {
   emptyDOM();
   landenTeller();
 });
+// gemiddelde leeftijd per land
+
+// filter personen uit het land (variable data en knopid eerst met vaste waarde china zijn er 2)
+// bereken gemiddelde leeftijd
+// toon leeftijd
+// knoppen maken met id land van het naam.
+
+const filterPersonSelectedCountry = (data, land) => {
+  peopleFromSelectedCountry = data.filter(element => {
+    if (element.region === land) {
+      return element;
+    }
+  });
+  return peopleFromSelectedCountry;
+};
+const takeAvarageAge = data => {
+  let ageArray = data.map(element => element.age);
+  let totalAge = ageArray.reduce((a, b) => a + b);
+  let averageAge = Math.round(totalAge / ageArray.length);
+  return averageAge;
+};
+const addAverageAgeToDom = data => {
+  let h2node = document.createElement("h2");
+
+  h2node.innerText = data;
+
+  document.getElementById("lijst").appendChild(h2node);
+};
+
+const createCountryButtons = data => {
+  let listnode = document.createElement("li");
+  let buttonnode = document.createElement("button");
+
+  buttonnode.innerText = data;
+  buttonnode.id = data;
+  buttonnode.className = "countryButtons";
+
+  document
+    .getElementById("lijst")
+    .appendChild(listnode)
+    .appendChild(buttonnode);
+};
+
+const createButtons = () =>
+  filterUniek(filterLanden().sort()).forEach(element => {
+    createCountryButtons(element);
+  });
+document.getElementById("landenGemiddelde").addEventListener("click", () => {
+  emptyDOM();
+  createButtons();
+  eventListenerCountryButtons();
+});
+
+const eventListenerCountryButtons = () => {
+  document.querySelectorAll(".countryButtons").forEach(element => {
+    return element.addEventListener("click", e => {
+      let land = e.target.id;
+      emptyDOM();
+      averageAgeEvent(land);
+    });
+  });
+};
+
+const averageAgeEvent = land =>
+  addAverageAgeToDom(
+    takeAvarageAge(filterPersonSelectedCountry(randomPersonData, land))
+  );
+
+// matchmaker
+
+const addLovePeopleList = data => {
+  let listnode = document.createElement("li");
+  let divnode = document.createElement("div");
+  // let imgnode = document.createElement("img");
+  let namenode = document.createElement("p");
+  let countrynode = document.createElement("p");
+  let agenode = document.createElement("p");
+  let zodiacnode = document.createElement("p");
+
+  // imgnode.src = data.photo;
+  namenode.innerText = data.name + " " + data.surname;
+  countrynode.innerText = data.region;
+  agenode.innerText = data.age;
+  zodiacnode.innerText = data.zodiac;
+
+  divnode.appendChild(namenode);
+  // divnode.appendChild(imgnode);
+  divnode.appendChild(countrynode);
+  divnode.appendChild(agenode);
+  divnode.appendChild(zodiacnode);
+  document
+    .getElementById("lijst")
+    .appendChild(listnode)
+    .appendChild(divnode);
+};
+
+const addZodiac = () => {
+  persondataZodiac = randomPersonData.map(element => {
+    array = element;
+    array.zodiac = "sterrenbeeld";
+
+    return array;
+  });
+  console.log(persondataZodiac);
+};
+
+addZodiac();
+randomPersonData.forEach(addLovePeopleList);
+// sterrenbeeld toevoegen
+// switch?
