@@ -150,25 +150,49 @@ document.getElementById("credit").addEventListener("click", () => {
 
 const addCountToList = data => {
   let listnode = document.createElement("li");
-  let count = 0;
-  landenlijst = data;
-
-  randomPersonData.forEach(element => {
-    landenlijst.includes(element.region) ? count++ : count;
-  });
-
-  listnode.innerText = data + " " + count;
+  let land = data.land;
+  let count = data.count;
+  console.log(data);
+  listnode.innerText = land + " " + count;
   document.getElementById("lijst").appendChild(listnode);
 };
 
-// const addCounter = data => {
-//   let count = 0;
-//   landenlijst = data;
-//   randomPersonData.forEach(element => {
-//     landenlijst.includes(element.region)
-//       ? { land: element.region, count: count++ }
-//       : { land: element.region, count: count };
-//   });
-// };
+const addCounter = data => {
+  let landenLijst = data.map(land => {
+    return { land: land, count: 0 };
+  });
+  let region = randomPersonData.map(element => element.region);
 
-filterUniek(filterLanden()).forEach(addCountToList);
+  let landenlijstCounter = landenLijst.map(element => {
+    region.forEach(region =>
+      region === element.land
+        ? { land: element.land, count: element.count++ }
+        : { land: element.land, count: element.count }
+    );
+    console.log(region, element);
+    return {
+      land: element.land,
+      count: element.count
+    };
+  });
+  return landenlijstCounter;
+};
+
+const sortCount = (a, b) => {
+  if (a.count > b.count) {
+    return -1;
+  }
+  if (a.count < b.count) {
+    return 1;
+  }
+};
+
+const landenTeller = () =>
+  addCounter(filterUniek(filterLanden()))
+    .sort(sortCount)
+    .forEach(addCountToList);
+
+document.getElementById("landenteller").addEventListener("click", () => {
+  emptyDOM();
+  landenTeller();
+});
