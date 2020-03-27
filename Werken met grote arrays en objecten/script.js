@@ -274,18 +274,23 @@ const addLovePeopleList = data => {
   let countrynode = document.createElement("p");
   let agenode = document.createElement("p");
   let zodiacnode = document.createElement("p");
+  let buttonnode = document.createElement("button");
 
   // imgnode.src = data.photo;
   namenode.innerText = data.name + " " + data.surname;
   countrynode.innerText = data.region;
   agenode.innerText = data.age;
   zodiacnode.innerText = data.zodiac;
+  buttonnode.innerText = "Match";
+  buttonnode.id = data.name + data.surname;
+  buttonnode.onclick = addMatchList;
 
   divnode.appendChild(namenode);
   // divnode.appendChild(imgnode);
   divnode.appendChild(countrynode);
   divnode.appendChild(agenode);
   divnode.appendChild(zodiacnode);
+  divnode.appendChild(buttonnode);
   document
     .getElementById("lijst")
     .appendChild(listnode)
@@ -293,16 +298,243 @@ const addLovePeopleList = data => {
 };
 
 const addZodiac = () => {
-  persondataZodiac = randomPersonData.map(element => {
+  const persondataZodiac = randomPersonData.map(element => {
     array = element;
-    array.zodiac = "sterrenbeeld";
+    let [day, month] = array.birthday.dmy.split("/");
+
+    if ((day > 20 && month == 3) || (day < 21 && month == 4)) {
+      array.zodiac = "ram";
+    } else if ((day > 20 && month == 4) || (day < 21 && month == 5)) {
+      array.zodiac = "stier";
+    } else if ((day > 20 && month == 5) || (day < 21 && month == 6)) {
+      array.zodiac = "tweelingen";
+    } else if ((day > 20 && month == 6) || (day < 21 && month == 7)) {
+      array.zodiac = "kreeft";
+    } else if ((day > 20 && month == 7) || (day < 21 && month == 8)) {
+      array.zodiac = "leeuw";
+    } else if ((day > 20 && month == 8) || (day < 21 && month == 9)) {
+      array.zodiac = "maagd";
+    } else if ((day > 20 && month == 9) || (day < 21 && month == 10)) {
+      array.zodiac = "weegschaal";
+    } else if ((day > 20 && month == 10) || (day < 21 && month == 11)) {
+      array.zodiac = "schorpioen";
+    } else if ((day > 20 && month == 11) || (day < 21 && month == 12)) {
+      array.zodiac = "boogschutter";
+    } else if ((day > 20 && month == 12) || (day < 21 && month == 1)) {
+      array.zodiac = "steenbok";
+    } else if ((day > 20 && month == 1) || (day < 21 && month == 2)) {
+      array.zodiac = "waterman";
+    } else if ((day > 20 && month == 2) || (day < 21 && month == 3)) {
+      array.zodiac = "vissen";
+    } else {
+      array.zodiac = "geenbeeld";
+    }
 
     return array;
   });
-  console.log(persondataZodiac);
+  return persondataZodiac;
 };
 
-addZodiac();
-randomPersonData.forEach(addLovePeopleList);
-// sterrenbeeld toevoegen
-// switch?
+const addMatchList = event => {
+  emptyDOM();
+  console.log(event.target);
+  let target = event.target;
+  let person = target.id;
+  console.log(person);
+  // div met degene van de match
+  let data = randomPersonData.filter(element => {
+    return person == element.name + element.surname;
+  });
+  data = data[0];
+
+  let listnode = document.createElement("li");
+  let divnode = document.createElement("div");
+  // let imgnode = document.createElement("img");
+  let namenode = document.createElement("p");
+  let countrynode = document.createElement("p");
+  let agenode = document.createElement("p");
+  let zodiacnode = document.createElement("p");
+  let matchnode = document.createElement("ul");
+
+  // imgnode.src = data.photo;
+  namenode.innerText = data.name + " " + data.surname;
+  countrynode.innerText = data.region;
+  agenode.innerText = data.age;
+  zodiacnode.innerText = data.zodiac;
+  matchnode.id = "matchlijst";
+
+  divnode.appendChild(namenode);
+  // divnode.appendChild(imgnode);
+  divnode.appendChild(countrynode);
+  divnode.appendChild(agenode);
+  divnode.appendChild(zodiacnode);
+  // div met matches
+
+  listnode.appendChild(divnode);
+
+  document
+    .getElementById("lijst")
+    .appendChild(listnode)
+    .appendChild(matchnode);
+
+  listOfMatches(data.zodiac)
+    .filter(person => {
+      return person.name != data.name;
+    })
+    .forEach(divMatches);
+};
+
+const divMatches = data => {
+  // div met matches
+  let listnode = document.createElement("li");
+  let divnode = document.createElement("div");
+  // let imgnode = document.createElement("img");
+  let namenode = document.createElement("p");
+  let countrynode = document.createElement("p");
+  let agenode = document.createElement("p");
+  let zodiacnode = document.createElement("p");
+  let buttonnode = document.createElement("button");
+
+  // imgnode.src = data.photo;
+  namenode.innerText = data.name + " " + data.surname;
+  countrynode.innerText = data.region;
+  agenode.innerText = data.age;
+  zodiacnode.innerText = data.zodiac;
+  buttonnode.innerText = "Match";
+  buttonnode.id = data.name + data.surname;
+  buttonnode.onclick = addMatchList;
+
+  divnode.appendChild(namenode);
+  // divnode.appendChild(imgnode);
+  divnode.appendChild(countrynode);
+  divnode.appendChild(agenode);
+  divnode.appendChild(zodiacnode);
+  divnode.appendChild(buttonnode);
+  // div met matches
+  listnode.appendChild(divnode);
+
+  document.getElementById("matchlijst").appendChild(listnode);
+};
+
+const listOfMatches = element => {
+  let zodiac = element;
+  let data = addZodiac();
+  let matches;
+  switch (zodiac) {
+    case "ram":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "ram" ||
+          person.zodiac === "leeuw" ||
+          person.zodiac === "boogschutter"
+        );
+      });
+      break;
+    case "stier":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "stier" ||
+          person.zodiac === "maagd" ||
+          person.zodiac === "steenbok"
+        );
+      });
+      break;
+    case "tweelingen":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "ram" ||
+          person.zodiac === "leeuw" ||
+          person.zodiac === "tweelingen"
+        );
+      });
+      break;
+    case "kreeft":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "stier" ||
+          person.zodiac === "maagd" ||
+          person.zodiac === "steenbok"
+        );
+      });
+      break;
+    case "leeuw":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "ram" ||
+          person.zodiac === "leeuw" ||
+          person.zodiac === "boogschutter"
+        );
+      });
+      break;
+    case "maagd":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "stier" ||
+          person.zodiac === "maagd" ||
+          person.zodiac === "steenbok"
+        );
+      });
+      break;
+    case "weegschaal":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "weegschaal" ||
+          person.zodiac === "leeuw" ||
+          person.zodiac === "boogschutter"
+        );
+      });
+      break;
+    case "schorpioen":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "stier" ||
+          person.zodiac === "maagd" ||
+          person.zodiac === "schorpioen"
+        );
+      });
+      break;
+    case "boogschutter":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "ram" ||
+          person.zodiac === "leeuw" ||
+          person.zodiac === "boogschutter"
+        );
+      });
+      break;
+    case "steenbok":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "stier" ||
+          person.zodiac === "maagd" ||
+          person.zodiac === "steenbok"
+        );
+      });
+      break;
+    case "waterman":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "tweelingen" ||
+          person.zodiac === "weegschaal" ||
+          person.zodiac === "waterman"
+        );
+      });
+    case "vissen":
+      matches = data.filter(person => {
+        return (
+          person.zodiac === "kreeft" ||
+          person.zodiac === "schorpioen" ||
+          person.zodiac === "vissen"
+        );
+      });
+      break;
+    default:
+  }
+  return matches;
+};
+
+document.getElementById("matchmaking").addEventListener("click", () => {
+  emptyDOM();
+  addZodiac();
+  filterAge(sortDataName(), 18).forEach(addLovePeopleList);
+});
