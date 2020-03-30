@@ -1,0 +1,42 @@
+body {
+  background-color: lightsteelblue;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: black;
+  color: whitesmoke;
+}
+#lijst {
+  padding: 25px 30px;
+  background-color: lightcyan;
+  margin-right: 50%;
+  margin-left: 5%;
+}
+.credit li {
+  border: solid black 2px;
+  background-color: lightgrey;
+  margin: 20px;
+}
+.match li {
+  border: solid black 2px;
+  background-color: lightgrey;
+  margin: 20px;
+}
+.match p {
+  margin-left: 20px;
+}
+.match button {
+  margin-left: 80%;
+  margin-bottom: 20px;
+  margin-top: -50px;
+  background-color: red;
+  display: inline-flex;
+}
+#matchlijst {
+  background-color: pink;
+  padding-top: 30px;
+}
+#matchlijst li {
+  background-color: salmon;
+}

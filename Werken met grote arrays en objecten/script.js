@@ -14,6 +14,9 @@ const emptyDOM = () => {
 const addDataToList = data => {
   let listnode = document.createElement("li");
 
+  lijst = document.getElementById("lijst");
+  lijst.className = "";
+
   listnode.innerText = data;
 
   document.getElementById("lijst").appendChild(listnode);
@@ -43,6 +46,8 @@ const addPeopleList = data => {
   let imgnode = document.createElement("img");
   let namenode = document.createElement("p");
 
+  lijst = document.getElementById("lijst");
+  lijst.className = "";
   imgnode.src = data.photo;
   namenode.innerText = data.name + " " + data.surname;
 
@@ -111,6 +116,9 @@ const addOldCreditcarsList = data => {
   cardnode.innerText = data.credit_card.number;
   experationnode.innerText = data.credit_card.expiration;
 
+  lijst = document.getElementById("lijst");
+  lijst.className = "credit";
+
   divnode.appendChild(namenode);
   divnode.appendChild(numbernode);
   divnode.appendChild(cardnode);
@@ -152,7 +160,10 @@ const addCountToList = data => {
   let listnode = document.createElement("li");
   let land = data.land;
   let count = data.count;
-  console.log(data);
+
+  lijst = document.getElementById("lijst");
+  lijst.className = "";
+
   listnode.innerText = land + " " + count;
   document.getElementById("lijst").appendChild(listnode);
 };
@@ -169,7 +180,6 @@ const addCounter = data => {
         ? { land: element.land, count: element.count++ }
         : { land: element.land, count: element.count }
     );
-    console.log(region, element);
     return {
       land: element.land,
       count: element.count
@@ -217,10 +227,10 @@ const takeAvarageAge = data => {
   let averageAge = Math.round(totalAge / ageArray.length);
   return averageAge;
 };
-const addAverageAgeToDom = data => {
+const addAverageAgeToDom = (data, land) => {
   let h2node = document.createElement("h2");
 
-  h2node.innerText = data;
+  h2node.innerText = "De gemiddelde leeftijd van " + land + " is " + data;
 
   document.getElementById("lijst").appendChild(h2node);
 };
@@ -232,6 +242,9 @@ const createCountryButtons = data => {
   buttonnode.innerText = data;
   buttonnode.id = data;
   buttonnode.className = "countryButtons";
+
+  lijst = document.getElementById("lijst");
+  lijst.className = "";
 
   document
     .getElementById("lijst")
@@ -261,7 +274,8 @@ const eventListenerCountryButtons = () => {
 
 const averageAgeEvent = land =>
   addAverageAgeToDom(
-    takeAvarageAge(filterPersonSelectedCountry(randomPersonData, land))
+    takeAvarageAge(filterPersonSelectedCountry(randomPersonData, land)),
+    land
   );
 
 // matchmaker
@@ -284,6 +298,9 @@ const addLovePeopleList = data => {
   buttonnode.innerText = "Match";
   buttonnode.id = data.name + data.surname;
   buttonnode.onclick = addMatchList;
+
+  lijst = document.getElementById("lijst");
+  lijst.className = "match";
 
   divnode.appendChild(namenode);
   // divnode.appendChild(imgnode);
@@ -337,10 +354,8 @@ const addZodiac = () => {
 
 const addMatchList = event => {
   emptyDOM();
-  console.log(event.target);
   let target = event.target;
   let person = target.id;
-  console.log(person);
   // div met degene van de match
   let data = randomPersonData.filter(element => {
     return person == element.name + element.surname;
@@ -371,6 +386,9 @@ const addMatchList = event => {
   // div met matches
 
   listnode.appendChild(divnode);
+
+  lijst = document.getElementById("lijst");
+  lijst.className = "match";
 
   document
     .getElementById("lijst")
