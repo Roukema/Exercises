@@ -3,7 +3,7 @@ import "./PortfolioExample.css";
 
 const PortfolioExamples = (props) => {
   return (
-    <div className="PortfolioExamples">
+    <div className="PortfolioExample">
       <div>1</div>
       <div>2</div>
       <div>3</div>
