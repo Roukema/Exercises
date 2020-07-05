@@ -1,0 +1,12 @@
+@import "../../Style/Variables.scss";
+
+.PortfolioExample {
+  background-color: $portfoliobckgrnd;
+  height: 100vh;
+
+  div {
+    height: 50px;
+    width: 50px;
+    background-color: $div1;
+  }
+}
