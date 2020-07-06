@@ -1,0 +1,10 @@
+@import "../../Style/Variables.scss";
+
+.Portfolio {
+  background-color: $portfolioBG;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}

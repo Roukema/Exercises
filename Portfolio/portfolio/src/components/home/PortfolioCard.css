@@ -1,0 +1,13 @@
+.PortfolioCard {
+  display: block;
+  -ms-flex-preferred-size: 26%;
+      flex-basis: 26%;
+  height: 120px;
+  width: 120px;
+  margin: 10px 15px;
+  background-color: grey;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/*# sourceMappingURL=PortfolioCard.css.map */

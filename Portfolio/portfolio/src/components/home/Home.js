@@ -1,8 +1,8 @@
 import React from "react";
 import "./Home.css";
-import "./PortfolioExample.css";
+import "./Portfolio.css";
 
-import PortfolioExample from "./PortfolioExample";
+import Portfolio from "./Portfolio";
 
 const Home = (props) => {
   let fly = [];
@@ -18,7 +18,7 @@ const Home = (props) => {
         {fly}
         <h1>Portfolio Matthijs Roukema</h1>
       </header>
-      <PortfolioExample />
+      <Portfolio />
     </div>
   );
 };
