@@ -3,15 +3,22 @@ import "./PortfolioCard.css";
 
 const PortfolioCard = (props) => {
   console.log(props.backgroundImage);
-  let imgLink = props.backgroundImage;
+  let style = {
+    backgroundImage: `url(${props.backgroundImage})`,
+    "background-size": `${props.backgroundsize}`,
+  };
   return (
-    <div
-      className="PortfolioCard"
-      id={props.title}
-      style={{ backgroundImage: `url(${props.backgroundImage}` }}
-    >
-      <h3> {props.title} </h3>
-      <p> {props.description} </p>
+    <div className="CardContainer">
+      <div className="FlipCard">
+        <div className="PortfolioCard" id={props.title} style={style}>
+          <div className="CardText">
+            <h3> {props.title} </h3>
+          </div>
+        </div>
+        <div className="CardBack">
+          <p> {props.description} </p>
+        </div>
+      </div>
     </div>
   );
 };
