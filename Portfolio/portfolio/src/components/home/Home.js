@@ -16,6 +16,9 @@ const Home = (props) => {
       {/* <Navbar /> */}
       <header>
         {fly}
+        <div className="cropper">
+          <img src="/Images/WINC-portretten-by-Marinke-Kho-Davelaar-Photography-1069843-2.jpg" />
+        </div>
         <h1>Portfolio Matthijs Roukema</h1>
       </header>
       <Portfolio />

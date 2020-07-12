@@ -6,7 +6,6 @@
 
 .Home header {
   background-color: $homeBG;
-  background-image: url(../home/images/sterretje.jpg);
   background-size: cover;
   color: $white;
   display: block;
@@ -16,7 +15,20 @@
   font-family: $headerFont;
   h1 {
     vertical-align: center;
-    line-height: 90vh;
+    line-height: calc(90vh-250px);
+  }
+  .cropper {
+    display: inline-block;
+    position: relative;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 

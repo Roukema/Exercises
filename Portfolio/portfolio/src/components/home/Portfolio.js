@@ -21,7 +21,7 @@ const Portfolio = (props) => {
         title="Winc Eindopdracht"
         description="met gegevens uit een database een dashboard bouwen zodat de gevens in duidelijk grafieken worden weergeven. "
         backgroundImage="Images/Front-End-Case.png"
-        backgroundsize="cover"
+        backgroundsize="contain"
       />
       <PortfolioCard
         title="Python Snake"

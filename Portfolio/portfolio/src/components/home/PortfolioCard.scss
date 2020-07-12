@@ -7,26 +7,31 @@
   max-width: 300px;
   margin: 2%;
   background-color: transparent;
-  //   perspective: 1000px;
 }
 .FlipCard {
   position: relative;
   height: 100%;
   width: 100%;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 .PortfolioCard {
   height: 100%;
   width: 100%;
-  background-color: rgba(128, 128, 128, 0.7);
+  background-color: rgba(128, 128, 128, 1);
   background-position: center;
   background-repeat: no-repeat;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  z-index: 2;
+  transition: transform 1s;
+  transition-timing-function: ease-in-out;
+  transform-style: preserve-3d;
 
   .CardText {
     color: $baseGold;
     width: 100%;
-    height: 100%;
+    height: calc(100%-20px);
     padding-top: 20px;
     background-size: inherit;
     background-color: rgba($color: #000000, $alpha: 0.2);
@@ -37,29 +42,23 @@
     }
   }
 }
+
+.CardBack {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 1);
+  color: whitesmoke;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: rotateY(-180deg);
+  transition: transform 1s;
+  transition-timing-function: ease-in-out;
+  transform-style: preserve-3d;
+}
+
 .CardContainer:hover .PortfolioCard {
   transform: rotateY(180deg);
 }
-
-.PortfolioCard {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-.CardBack {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: visible;
-}
-
-.CardBack {
-  width: 100%;
-  height: 100%;
-  background-color: dodgerblue;
-  color: whitesmoke;
-  transform: rotateY(180deg);
+.CardContainer:hover .CardBack {
+  transform: rotateY(0deg);
 }
