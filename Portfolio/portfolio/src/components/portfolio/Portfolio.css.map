@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,UAAU,CAAC;EACT,gBAAgB,ECAN,OAAO;EDCjB,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI;EACf,eAAe,EAAE,YAAY;EAC7B,aAAa,EAAE,MAAM;EACrB,QAAQ,EAAE,QAAQ;EAClB,SAAS,EAAE,MAAM;EACjB,MAAM,EAAE,MAAM;EACd,UAAU,EAAE,IAAI;EAChB,cAAc,EAAE,IAAI;CACrB",
+    "sources": [
+        "Portfolio.scss",
+        "../../Style/Variables.scss"
+    ],
+    "names": [],
+    "file": "Portfolio.css"
+}

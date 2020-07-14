@@ -2,24 +2,28 @@
 
 .Home {
   display: block;
+  background-color: $baseBlack;
 }
 
 .Home header {
   background-color: $homeBG;
+  position: relative;
+  overflow: hidden;
   background-size: cover;
   color: $white;
   display: block;
-  height: 100vh;
-  width: 100%;
+  height: 80vh;
   text-align: center;
   font-family: $headerFont;
   h1 {
     vertical-align: center;
-    line-height: calc(90vh-250px);
+    line-height: calc(90vh-25vh);
+    color: $baseGold;
   }
   .cropper {
     display: inline-block;
     position: relative;
+    margin-top: 25vh;
     width: 250px;
     height: 250px;
     overflow: hidden;
@@ -35,7 +39,7 @@
 $quantity: 15;
 
 .firefly {
-  position: relative;
+  position: inherit;
   left: 50%;
   top: 50%;
   pointer-events: none;

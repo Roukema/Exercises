@@ -1,0 +1,14 @@
+@import "../../Style/Variables.scss";
+
+.Portfolio {
+  background-color: $portfolioBG;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 90vh;
+  padding-bottom: 50px;
+}
